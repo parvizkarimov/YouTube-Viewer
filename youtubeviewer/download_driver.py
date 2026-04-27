@@ -107,7 +107,9 @@ def download_driver(patched_drivers):
 
     major_version = int(version.split('.')[0])
 
-    Patcher(executable_path=f'chromedriver{exe_name}', version_main=major_version).auto()
+    p = Patcher(version_main=major_version)
+    p.auto()
+    shutil.copy(p.executable_path, f'chromedriver{exe_name}')
 
     return osname, exe_name
 

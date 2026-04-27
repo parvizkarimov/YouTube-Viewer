@@ -722,10 +722,11 @@ def main_viewer(proxy_type, proxy, position):
                 print(f'Display resolution : {width}x{height}')
                 viewports = [i for i in viewports if int(i[:4]) <= width]
 
-            try:
-                set_referer(position, url, method, driver)
-            except Exception:
-                pass
+            # try:
+            #     set_referer(position, url, method, driver)
+            # except Exception:
+            #     pass
+            driver.get(url)
 
             if 'consent' in driver.current_url:
                 print(timestamp() + bcolors.OKBLUE +

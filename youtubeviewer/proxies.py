@@ -134,7 +134,7 @@ def check_proxy(category, agent, proxy, proxy_type):
             "https": f"{proxy_type}://{proxy}",
         }
         response = requests.get(
-            'https://www.youtube.com/', headers=headers, proxies=proxy_dict, timeout=30)
+            'https://www.youtube.com/', headers=headers, proxies=proxy_dict, timeout=10)
         status = response.status_code
 
     else:

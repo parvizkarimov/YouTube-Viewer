@@ -101,17 +101,6 @@ def get_driver(background, viewports, agent, auth_required, path, proxy, proxy_t
     if viewports:
         options.add_argument(f"--window-size={choice(viewports)}")
     options.add_argument("--log-level=3")
-    options.add_experimental_option(
-        "excludeSwitches", ["enable-automation", "enable-logging"])
-    options.add_experimental_option('useAutomationExtension', False)
-    prefs = {"intl.accept_languages": 'en_US,en',
-             "credentials_enable_service": False,
-             "profile.password_manager_enabled": False,
-             "profile.default_content_setting_values.notifications": 2,
-             "download_restrictions": 3}
-    options.add_experimental_option("prefs", prefs)
-    options.add_experimental_option('extensionLoadTimeout', 120000)
-    options.add_argument(f"user-agent={agent}")
     options.add_argument("--mute-audio")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
@@ -136,7 +125,7 @@ def get_driver(background, viewports, agent, auth_required, path, proxy, proxy_t
         options.add_argument(f'--proxy-server={proxy_type}://{proxy}')
 
     service = Service(executable_path=path)
-    driver = uc.Chrome(service=service, options=options)
+    driver = uc.Chrome(service=service, options=options, user_agent=agent)
 
     return driver
 

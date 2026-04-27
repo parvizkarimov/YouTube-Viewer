@@ -688,10 +688,6 @@ def main_viewer(proxy_type, proxy, position):
             patched_driver = os.path.join(
                 patched_drivers, f'chromedriver_{position%threads}{exe_name}')
 
-            try:
-                Patcher(executable_path=patched_driver).patch_exe()
-            except Exception:
-                pass
 
             proxy_folder = os.path.join(
                 cwd, 'extension', f'proxy_auth_{position}')
@@ -728,7 +724,10 @@ def main_viewer(proxy_type, proxy, position):
                 print(f'Display resolution : {width}x{height}')
                 viewports = [i for i in viewports if int(i[:4]) <= width]
 
-            set_referer(position, url, method, driver)
+            try:
+                set_referer(position, url, method, driver)
+            except Exception:
+                pass
 
             if 'consent' in driver.current_url:
                 print(timestamp() + bcolors.OKBLUE +

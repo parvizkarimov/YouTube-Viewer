@@ -38,7 +38,14 @@ def gather_proxy():
                  'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt',
                  'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt',
                  'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/proxy.txt',
-                 'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt']
+                 'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt',
+                 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/http.txt',
+                 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks4.txt',
+                 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt',
+                 'https://raw.githubusercontent.com/mmpx12/proxy-list/master/http.txt',
+                 'https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks4.txt',
+                 'https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks5.txt',
+                 'https://raw.githubusercontent.com/proxy4parsing/proxy-list/main/http.txt']
 
     for link in link_list:
         response = requests.get(link)

@@ -34,7 +34,8 @@ from fake_headers import Headers, browsers
 from faker import Faker
 from requests.exceptions import RequestException
 from tabulate import tabulate
-from undetected_chromedriver.patcher import Patcher
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
 from youtubeviewer import website
 from youtubeviewer.basics import *
@@ -123,20 +124,14 @@ website.console = console
 website.database = DATABASE
 
 
-def monkey_patch_exe(self):
-    linect = 0
-    replacement = self.gen_random_cdc()
-    replacement = f"  var key = '${replacement.decode()}_';\n".encode()
-    with io.open(self.executable_path, "r+b") as fh:
-        for line in iter(lambda: fh.readline(), b""):
-            if b"var key = " in line:
-                fh.seek(-len(line), 1)
-                fh.write(replacement)
-                linect += 1
-        return linect
-
-
-Patcher.patch_exe = monkey_patch_exe
+def monkey_patch_exe(executable_path):
+    with open(executable_path, "r+b") as f:
+        content = f.read()
+        match = re.search(b"cdc_[a-zA-Z0-9]{22}_", content)
+        if match:
+            f.seek(match.start())
+            new_id = b"alt_" + b"".join([bytes([randint(97, 122)]) for _ in range(22)]) + b"_"
+            f.write(new_id)
 
 
 def timestamp():
@@ -687,7 +682,10 @@ def main_viewer(proxy_type, proxy, position):
 
             patched_driver = os.path.join(
                 patched_drivers, f'chromedriver_{position%threads}{exe_name}')
-
+            try:
+                monkey_patch_exe(patched_driver)
+            except Exception:
+                pass
 
             proxy_folder = os.path.join(
                 cwd, 'extension', f'proxy_auth_{position}')

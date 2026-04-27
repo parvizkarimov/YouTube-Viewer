@@ -33,19 +33,38 @@ def gather_proxy():
     proxies = []
     print(bcolors.OKGREEN + 'Scraping proxies ...' + bcolors.ENDC)
 
-    link_list = ['https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt',
-                 'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt',
-                 'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt',
-                 'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt',
-                 'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/proxy.txt',
-                 'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt',
-                 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/http.txt',
-                 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks4.txt',
-                 'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt',
-                 'https://raw.githubusercontent.com/mmpx12/proxy-list/master/http.txt',
-                 'https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks4.txt',
-                 'https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks5.txt',
-                 'https://raw.githubusercontent.com/proxy4parsing/proxy-list/main/http.txt']
+    link_list = [
+        'https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all',
+        'https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks4&timeout=10000&country=all',
+        'https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all',
+        'https://raw.githubusercontent.com/roosterkid/openproxylist/main/HTTPS_RAW.txt',
+        'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/http.txt',
+        'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks4.txt',
+        'https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt',
+        'https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt',
+        'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt',
+        'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt',
+        'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt',
+        'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/proxy.txt',
+        'https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt',
+        'https://raw.githubusercontent.com/mmpx12/proxy-list/master/http.txt',
+        'https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks4.txt',
+        'https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks5.txt',
+        'https://raw.githubusercontent.com/proxy4parsing/proxy-list/main/http.txt',
+        'https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt',
+        'https://raw.githubusercontent.com/rdavydov/proxy-list/main/proxies/http.txt',
+        'https://raw.githubusercontent.com/rdavydov/proxy-list/main/proxies/socks4.txt',
+        'https://raw.githubusercontent.com/rdavydov/proxy-list/main/proxies/socks5.txt',
+        'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/http.txt',
+        'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/https.txt',
+        'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/socks4.txt',
+        'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/socks5.txt',
+        'https://raw.githubusercontent.com/MuRongPIG/Proxy-Master/main/http.txt',
+        'https://raw.githubusercontent.com/MuRongPIG/Proxy-Master/main/socks4.txt',
+        'https://raw.githubusercontent.com/MuRongPIG/Proxy-Master/main/socks5.txt',
+        'https://raw.githubusercontent.com/Anonym0usWork1221/Free-Proxies/main/proxy_list.txt',
+        'https://raw.githubusercontent.com/officialputuid/Free-Proxy-List/master/proxies.txt'
+    ]
 
     for link in link_list:
         response = requests.get(link)

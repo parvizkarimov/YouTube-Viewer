@@ -26,7 +26,7 @@ import shutil
 import subprocess
 import sys
 
-import undetected_chromedriver._compat as uc
+from undetected_chromedriver import Patcher
 
 from .colors import *
 
@@ -105,11 +105,9 @@ def download_driver(patched_drivers):
 
         shutil.rmtree(patched_drivers, ignore_errors=True)
 
-    major_version = version.split('.')[0]
+    major_version = int(version.split('.')[0])
 
-    uc.TARGET_VERSION = major_version
-
-    uc.install()
+    Patcher(executable_path=f'chromedriver{exe_name}', version_main=major_version).auto()
 
     return osname, exe_name
 

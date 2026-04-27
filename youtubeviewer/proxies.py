@@ -83,7 +83,7 @@ def gather_proxy():
               ' proxies gathered from ' + bcolors.OKCYAN + f'{link}' + bcolors.ENDC)
 
     proxies = list(set(filter(None, proxies)))
-    shuffle(proxies)
+    # shuffle(proxies)
 
     return proxies
 
